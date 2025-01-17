@@ -6,13 +6,13 @@ import { api } from 'api';
 
 function Player() {
 
-    const [video, setvideo] = useState()
+    const [video, setVideo] = useState()
     const parametros = useParams()
     useEffect(() => {
         fetch(`${api}?id=${parametros.id}`)
             .then(resposta => resposta.json())
             .then(dados => {
-                setvideo(...dados)
+                setVideo(...dados)
             })
     }, [parametros.id])
 
@@ -24,13 +24,12 @@ function Player() {
             <h1 className={styles.titulo}>{video.titulo}</h1>
             <p className={styles.descricao}>{video.descricao}</p>
             <div className={styles.containerVideo}>
-                <iframe className={styles.video}
+                <iframe className={styles.video} style={{border:0}}
                     width="100%"
                     height="100%"
                     src={video.link}
                     title={video.titulo}
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowfullscreen="" ></iframe>
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowFullScreen="" ></iframe>
             </div>
         </section>
     )
